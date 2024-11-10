@@ -1,0 +1,107 @@
+﻿@model Admin_Panel_Database_First.Models.T_Students
+
+@{
+    ViewBag.Title = "فرم ثبت نام";
+}
+
+<div class="jumbotron text-center">
+    <h3>فرم ثبت نام کاربر جدید</h3>
+</div>
+
+@using (Html.BeginForm("Create", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-row">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.Family, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.Family, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Family, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-row">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-row">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <label class="control-label col-md-2">تکرار رمز عبور</label>
+        <div class="col">
+            <input type="password" id="repeatPassword" name="repeatPassword" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    
+    <div class="form-row">
+        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control"} })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            <select id="Gender" name="Gender" class="form-control">
+                <option hidden>انتخاب نشده</option>
+                <option value="true">مرد</option>
+                <option value="false">زن</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-row">
+        @Html.LabelFor(model => model.Marital, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            <select id="Marital" name="Marital" class="form-control">
+                <option hidden>انتخاب نشده</option>
+                <option value="true">متاهل</option>
+                <option value="false">مجرد</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Marital, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col">
+            <input type="file" id="imageUpload" name="imageUpload" class="form-control"/>
+            @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+
+    <div style="float: left !important; margin-top: 15px !important; margin-bottom: 15px !important ">
+        @Html.ActionLink("بازگشت به لیست", "Index", null, new { @class = "btn btn-primary" })
+        <input type="submit" value="ثبت نام" class="btn btn-success" />
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

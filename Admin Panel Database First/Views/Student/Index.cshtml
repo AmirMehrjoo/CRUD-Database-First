@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Admin_Panel_Database_First.Models.T_Students>
+
+@{
+    ViewBag.Title = "لیست کاربران";
+    int count = 100;
+}
+
+<div class="jumbotron text-center">
+    <h3> مشاهده لیست کاربران</h3>
+</div>
+
+<p>
+    @Html.ActionLink("ثبت نام کاربر جدید", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>ردیف</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Family)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @count
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Family)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (item.Marital == true)
+                {
+                    <span>متاهل</span>
+                }
+                else
+                {
+                    <span>مجرد</span>
+                }
+            </td>
+            <td>
+                @if (item.Status==true)
+                {
+                    <span style="color:green">فعال</span>
+                }
+                else
+                {
+                    <span style="color:red">مسدود</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("جزئیات", "Details", new { id = item.ID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        count++;
+    }
+</table>

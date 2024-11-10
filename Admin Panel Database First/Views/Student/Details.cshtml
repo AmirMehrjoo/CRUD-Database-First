@@ -1,0 +1,145 @@
+﻿@model Admin_Panel_Database_First.Models.T_Students
+
+@{
+    string name = Model.Name + " " + Model.Family;
+    ViewBag.Title = "اطلاعات " + name;
+}
+
+<div class="jumbotron text-center">
+    <h3>اطلاعات @name</h3>
+</div>
+
+<div class="form-row">
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Family)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Family)
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="form-row">
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="form-row">
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Gender)
+        </div>
+        <div class="form-control">
+            @if (Model.Gender == true)
+            {
+                <span>مرد</span>
+            }
+            else
+            {
+                <span>زن</span>
+            }
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Age)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Age)
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="form-row">
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Status)
+        </div>
+        <div class="form-control">
+            @if (Model.Status == true)
+            {
+                <span style="color:green">فعال</span>
+            }
+            else
+            {
+                <span style="color:red"> مسدود </span>
+            }
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.Marital)
+        </div>
+        <div class="form-control">
+            @if (Model.Marital == true)
+            {
+                <span>متاهل</span>
+            }
+            else
+            {
+                <span>مجرد</span>
+            }
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="form-row">
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </div>
+        <img src="~/Images/@Model.ImageName" style="width:120px; height:120px" />
+    </div>
+
+    <div class="col">
+        <div class="form-label">
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(model => model.RegisterDate)
+        </div>
+    </div>
+</div>
+
+
+
+<div class="form-group" style="float: left !important; margin-top: 15px !important; margin-bottom: 15px !important">
+    @Html.ActionLink("بازگشت به لیست", "Index", null, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("ویرایش اطلاعات " + name, "Edit", new { id = Model.ID }, new { @class = "btn btn-warning" })
+</div>
